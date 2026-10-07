@@ -1,0 +1,30 @@
+Análise conjunta: CS — UmidSolo, plugfild e PC03/azul
+===================================================
+
+Direção: CS — UmidSolo é a referência de campo; plugfild e PC03/azul são avaliados e ajustados.
+Fontes: TOA5 CR350/UmidSolo e PeriodoCS625; PC01 e PC03 SIMEPAR, sensor 238.
+Corte provisório: 02/10/2026 10:10 após trecho zerado PC03. Recorte operacional; não comprova adequação metrológica.
+Período: 2026-10-02 10:10:00-0300 a 2026-10-07 15:00:00-0300
+Pares exatos dos três sensores: 1499
+Treino 70%: 1049; validação 30%: 450; início da validação: 2026-10-06 01:35:00-0300
+
+Dados brutos contra CS — UmidSolo:
+- plugfild: Pearson=0.9429; Spearman=0.9691; bias=14.5765 p.p.; MAE=14.5765 p.p.; RMSE=14.5928 p.p.
+- PC03/azul: Pearson=0.8337; Spearman=0.7693; bias=-6.1440 p.p.; MAE=6.1440 p.p.; RMSE=6.2343 p.p.
+
+Validação temporal nos 30% finais — ajuste quadrático treinado nos 70% iniciais:
+- plugfild: bias=-0.9285 p.p.; MAE=0.9309 p.p.; RMSE=1.1556 p.p.
+- PC03/azul: bias=-0.9756 p.p.; MAE=1.1765 p.p.; RMSE=1.3999 p.p.
+
+Lag diagnóstico:
+- plugfild: -10 min; Pearson=0.9436; n=1497
+- PC03/azul: 35 min; Pearson=0.8517; n=1492
+
+Observações:
+- Não houve interpolação nem suavização.
+- Os gráficos conjuntos foram usados quando unidade, escala e objetivo permitiram comparação direta.
+- Ajustes e resíduos com faixas distintas foram separados em painéis.
+- Coeficientes são empíricos para este período curto e não devem ser adotados como calibração universal.
+- PC03: 74/450 pontos de validação fora da faixa do preditor no treino (23–29%).
+- Quadrático PC03 crescente em toda a faixa observada: FALSE. Não adotar como curva física sem revisão.
+- Lags são exploratórios: o n varia entre candidatos e não representam tempos físicos de resposta estimados.

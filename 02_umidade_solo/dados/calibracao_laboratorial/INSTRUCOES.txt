@@ -1,0 +1,69 @@
+CALIBRAÇÃO LABORATORIAL — USO DA INTERFACE
+
+Interface: registro_leituras.html
+Dados persistentes: leituras_laboratorio.csv
+Planejamento: planejamento_agua_vwc_0_a_60.csv
+
+1. O QUE A CURVA USA
+- Referência comum: o ponto 1, sem água adicionada, define a massa zero. Em cada ponto, água de referência = massa após adição/equilíbrio - massa zero; VWC = água de referência / volume fixo.
+- CS625: período bruto em microssegundos (us), nunca a VWC calculada pelo CR350.
+- plugfild e azul_pc03: porcentagens brutas exibidas pelos próprios sensores.
+- Cada sensor é ajustado separadamente contra a mesma VWC de referência.
+
+2. CONSTANTES DO ENSAIO
+Preencha uma vez:
+- identificação do ensaio;
+- tara do recipiente vazio;
+- 1.049 g de massa seca equivalente do solo;
+- método usado para obter a massa seca;
+- diâmetro interno e altura real do solo.
+
+A massa seca precisa ser determinada por estufa até massa constante ou convertida para equivalente seco usando subamostra. "Seco ao ar" não é automaticamente massa seca.
+
+3. RECIPIENTE INFORMADO
+Diâmetro interno: 8 cm
+Altura de solo: 29,5 cm
+Volume geométrico: 1.482,8317 cm3
+
+Essa geometria é menor que o exemplo de aproximadamente 10 cm de diâmetro por 35 cm de comprimento citado no manual Campbell. O programa não bloqueará a curva somente por esse motivo, mas registrará que ela é específica do arranjo de 8 × 29,5 cm. Mantenha todo o volume sensível ocupado por solo e evite vazios junto às hastes.
+
+4. ROTINA PARA CADA PONTO
+1. No ponto 1, não adicione água: registre 0 g e pese o conjunto para definir a referência zero.
+2. Nos demais pontos, pese o recipiente + solo ANTES de adicionar água.
+3. Pese e registre a água REALMENTE adicionada.
+4. Pulverize/misture cuidadosamente e compacte até a mesma marca de altura.
+5. Cubra o recipiente durante a equalização.
+6. Confirme equilíbrio quando o período do CS625 ficar constante; uma hora não substitui esse critério.
+7. Pese recipiente + solo APÓS a adição e o equilíbrio. Essa massa produz a VWC de referência.
+8. Leia os sensores um após o outro. Registre ordem e horário.
+9. Faça ao menos três leituras consecutivas de cada sensor.
+10. Ao remover um sensor, restaure/homogeneíze e recompacte a região perturbada antes do próximo; não reutilize um vazio.
+11. Mantenha o recipiente coberto sempre que possível.
+
+A interface usa por padrão: CS625 primeiro, plugfild segundo, azul_pc03 terceiro. As ordens podem ser alteradas, mas devem ser 1, 2 e 3 em cada ponto. Se for necessário confirmar novamente a estabilidade após perturbar o solo, registre isso nas observações e repita a preparação do ponto.
+
+5. SALVAMENTO
+- Cada alteração é salva no navegador.
+- A atualização da fórmula mantém a mesma chave de salvamento e cria uma cópia interna do estado anterior antes da primeira alteração.
+- Ao final de cada dia, clique em "Baixar CSV para o R".
+- Substitua dados/calibracao_laboratorial/leituras_laboratorio.csv somente depois de conferir o arquivo baixado.
+- O CSV é o backup portátil; o salvamento do navegador não substitui o CSV.
+
+6. REGRAS AUTOMÁTICAS DO R
+- exatamente um sensor periodo_us/us e dois sensores umidade_percentual/%;
+- no mínimo cinco níveis distintos e amplitude de pelo menos 0,10 m3/m3;
+- todos os três sensores em todos os pontos;
+- no mínimo três repetições por ponto/sensor;
+- ordem 1, 2 e 3, com horários coerentes;
+- ponto 1 obrigatoriamente com 0 g de água adicionada;
+- referência hídrica calculada em relação à massa final do ponto 1;
+- continuidade entre a massa final de um ponto e a massa inicial do seguinte registrada como diagnóstico;
+- CS625 crescente, quadrático, côncavo para cima e com derivada positiva;
+- outros sensores crescentes e fisicamente plausíveis;
+- seleção por LOOCV e parcimônia, não apenas por R2;
+- nenhuma curva inválida é marcada como recomendada.
+
+7. EXECUÇÃO
+Rscript programas/calibracao_laboratorial_3_sensores.R
+
+Não extrapole curvas além da faixa de VWC e das leituras efetivamente observadas. A LOOCV é avaliação interna; a validação independente exige outra sequência, coluna ou conjunto reservado.

@@ -1,0 +1,4 @@
+"modelo","C0","C1","C2","periodo_minimo_us","periodo_maximo_us","vwc_referencia_minima_m3_m3","vwc_referencia_maxima_m3_m3"
+"linear_especifica_diagnostica",-0.272917459056716,0.0202128896252206,0,16.07,30.0983333333333,0,0.295468204612713
+"quadratica_especifica",-1.31674084271291,0.114656954885034,-0.00203462936614509,16.07,30.0983333333333,0,0.295468204612713
+"quadratica_fabrica_campbell",-0.0663,-0.0063,7e-04,16.07,30.0983333333333,0,0.295468204612713

@@ -1,0 +1,3 @@
+"sensor","n_validacao","treino_min_pct","treino_max_pct","validacao_min_pct","validacao_max_pct","validacao_fora_faixa_treino","derivada_quadratica_min","derivada_quadratica_max","crescente_em_toda_faixa"
+"plugfild",450,42,50,43,49,0,0.391258951955761,1.42532906951272,TRUE
+"PC03/azul",450,23,29,23,31,74,-0.121433795158057,1.87917119468037,FALSE

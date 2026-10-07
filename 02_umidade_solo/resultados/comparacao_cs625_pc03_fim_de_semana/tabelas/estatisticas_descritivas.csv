@@ -1,0 +1,3 @@
+"sensor","n","minimo_pct","q05_pct","mediana_pct","media_pct","q95_pct","maximo_pct","desvio_padrao_pct","amplitude_pp"
+"CS625 — UmidSolo",576,23.62,23.65,28.535,27.7453472222222,31.2225,31.96,2.8069291066327,8.34
+"PC03/azul — SIMEPAR",576,17,17,21,21.6892361111111,30,46,4.68733228363406,29

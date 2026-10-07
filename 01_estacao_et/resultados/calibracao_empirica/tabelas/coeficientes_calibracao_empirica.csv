@@ -1,0 +1,5 @@
+"variavel";"referencia";"ajuste";"n_ajuste";"intercepto_linear";"inclinacao_linear";"formula_ajuste_linear"
+"temperatura_bulbo_seco";"temperatura_simepar";"linear_global";1601;0,0199300592340275;0,984688533324504;"0.019930 +0.984689*x"
+"umidade_relativa";"umidade_simepar";"linear_global";1601;21,449514812421;0,760385382907172;"21.449515 +0.760385*x"
+"temperatura_bulbo_seco";"temperatura_simepar";"linear_treino70";1120;0,0615878042065821;0,979902485699856;"0.061588 +0.979902*x"
+"umidade_relativa";"umidade_simepar";"linear_treino70";1120;22,4441392861913;0,750030778554962;"22.444139 +0.750031*x"

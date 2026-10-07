@@ -1,0 +1,96 @@
+
+Resumo estatistico: globo, bulbo seco e radiacao solar
+======================================================
+Pares validos analisados: 1601
+Pares com radiacao > 0:   718
+
+Estatisticas calculadas com radiacao > 0:
+- Globo direto vs radiacao:
+  Pearson:  0,8244
+  Spearman: 0,7737
+  R2:       0,6796
+
+- Delta globo-ar = globo - Bulbo Seco vs radiacao:
+  Pearson:  0,9114
+  Spearman: 0,9392
+  R2:       0,8306
+  Modelo:   delta = -0,2933 + 0,022644 * radiacao
+  IC95% por bootstrap em blocos de 32 observacoes diurnas: consultar resultados/globo_radiacao/tabelas/intervalos_confianca_globo_radiacao_bootstrap_blocos.csv
+
+Modelo dinamico simplificado de primeira ordem:
+  Forma: Delta(t+15min) - Delta(t) = a + b * radiacao(t) + c * Delta(t)
+  Pares consecutivos de 15 min usados: 591
+  R2:          0,0879
+  R2 ajustado: 0,0848
+  Intercepto:  -0,020717
+  b radiacao:  0,00414175
+  c Delta(t):  -0,190233
+
+Teste de defasagem do aquecimento relativo com interpolacao limitada:
+  Limite entre observacoes usado na analise principal: 30 min.
+  Os mesmos horarios sao usados em todos os lags de 0 a 20 min.
+   lag_min   n   pearson  spearman        r2
+1        0 651 0.9026566 0.9189410 0.8147889
+2        1 651 0.9054875 0.9221512 0.8199077
+3        2 651 0.9081644 0.9253686 0.8247626
+4        3 651 0.9105973 0.9280830 0.8291875
+5        4 651 0.9127912 0.9302264 0.8331877
+6        5 651 0.9148108 0.9319909 0.8368787
+7        6 651 0.9165180 0.9339643 0.8400053
+8        7 651 0.9179730 0.9358935 0.8426745
+9        8 651 0.9193087 0.9374505 0.8451284
+10       9 651 0.9204391 0.9392596 0.8472081
+11      10 651 0.9212658 0.9406842 0.8487307
+12      11 651 0.9218000 0.9417286 0.8497153
+13      12 651 0.9222222 0.9426908 0.8504938
+14      13 651 0.9224316 0.9437106 0.8508800
+15      14 651 0.9224471 0.9444714 0.8509087
+16      15 651 0.9223624 0.9449233 0.8507524
+17      16 651 0.9220305 0.9450328 0.8501402
+18      17 651 0.9215521 0.9448199 0.8492582
+19      18 651 0.9208444 0.9442443 0.8479544
+20      19 651 0.9199608 0.9434713 0.8463279
+21      20 651 0.9192483 0.9423000 0.8450174
+Melhor defasagem pelo R2: 14 min
+
+Sensibilidade ao limite de interpolacao:
+  max_gap_interpolacao_min lag_otimo_min n_comum   pearson  spearman        r2
+1                       15            13     440 0.9347579 0.9433425 0.8737722
+2                       30            14     651 0.9224471 0.9444714 0.8509087
+3                       45            15     724 0.9155035 0.9473945 0.8381466
+
+Teste exploratorio de defasagem separado por fase termica:
+  A fase e definida uma unica vez por Delta(t) - Delta(t-15min), com limiar de 0,05 °C.
+  Os mesmos horarios de cada fase sao usados em todos os lags.
+  Defasagens testadas por fase: 0 a 60 min.
+  Melhores lags por fase pelo R2:
+  - aquecimento: lag 10 min; n = 243; Pearson = 0,9524; Spearman = 0,9527; R2 = 0,9072; variacao media de Delta em 15 min = 0,5791 °C.
+  - resfriamento: lag 14 min; n = 238; Pearson = 0,8987; Spearman = 0,9276; R2 = 0,8077; variacao media de Delta em 15 min = -0,6391 °C.
+  Top 5 lags por fase, segundo R2:
+  - aquecimento: 10 min (R2=0,9072); 11 min (R2=0,9069); 9 min (R2=0,9068); 12 min (R2=0,9065); 8 min (R2=0,9057).
+  - resfriamento: 14 min (R2=0,8077); 15 min (R2=0,8077); 13 min (R2=0,8073); 16 min (R2=0,8072); 12 min (R2=0,8063).
+  A tabela completa por fase foi salva em: resultados/globo_radiacao/tabelas/teste_lag_globo_radiacao_por_fase_interpolado_1min.csv
+
+O que cada estatistica mede:
+- Pearson: mede relacao linear entre temperatura/delta e radiacao. Quanto mais perto de 1, mais forte a associacao linear positiva.
+- Spearman: mede relacao monotona; e util quando a resposta aumenta com a radiacao, mas nao exatamente em linha reta.
+- R2: fracao da variacao explicada pelo modelo linear simples.
+- Modelo linear: estima quanto o delta globo-ar aumenta para cada unidade de radiacao.
+- Modelo dinamico: testa se a variacao futura do delta globo-ar e explicada pela radiacao atual e pelo delta atual.
+- Defasagem: testa se o aquecimento relativo do globo em t + defasagem se associa melhor a radiacao observada em t.
+  A interpolacao linear e permitida apenas entre observacoes separadas por no maximo 30 min.
+  A analise geral testa 0 a 20 min com amostra fixa; a analise exploratoria por fase testa 0 a 60 min com fase e amostra fixas.
+
+Arquivos de saida:
+- resultados/globo_radiacao/tabelas/comparacao_globo_radiacao_simepar.csv
+- resultados/globo_radiacao/tabelas/intervalos_confianca_globo_radiacao_bootstrap_blocos.csv
+- resultados/globo_radiacao/tabelas/teste_lag_globo_radiacao_interpolado_1min.csv
+- resultados/globo_radiacao/tabelas/sensibilidade_lag_limite_interpolacao.csv
+- resultados/globo_radiacao/tabelas/teste_lag_globo_radiacao_por_fase_interpolado_1min.csv
+- resultados/globo_radiacao/tabelas/et_globo_interpolado_1min.csv
+- resultados/globo_radiacao/tabelas/modelo_dinamico_primeira_ordem.csv
+- resultados/globo_radiacao/resumos/resumo_globo_radiacao.txt
+- resultados/globo_radiacao/graficos/grafico_globo_delta_radiacao_series.png
+- resultados/globo_radiacao/graficos/grafico_delta_globo_radiacao_dispersao.png
+- resultados/globo_radiacao/graficos/grafico_lag_globo_radiacao_por_fase.png
+- resultados/globo_radiacao/graficos/grafico_modelo_dinamico_primeira_ordem.png

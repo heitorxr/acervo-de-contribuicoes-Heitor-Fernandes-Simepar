@@ -1,0 +1,53 @@
+
+Resumo estatistico: sensibilidade do indice estimado por Stull
+===========================================================
+Pares validos analisados: 1601
+
+Escopo da comparacao:
+- Tw e uma estimativa psicrometrica de Stull, nao bulbo umido natural medido.
+- As duas series reutilizam o mesmo globo ET; portanto, a comparacao nao valida o indice completo.
+- Formula ponderada: I_est = 0,7*Tw_est + 0,2*Tg + 0,1*Tbs.
+
+Verificacao interna da planilha ET:
+- IBUTG recalculado com coluna 'Bulbo Umido (stull)' menos IBUTG original:
+  Vies:    0,002 °C
+  MAE:     0,030 °C
+  RMSE:    0,037 °C
+
+- Bulbo umido Stull recalculado no R menos coluna 'Bulbo Umido (stull)':
+  Vies:    0,001 °C
+  MAE:     0,028 °C
+  RMSE:    0,033 °C
+
+Sensibilidade a substituicao de T/UR ET por T/UR Simepar, com o mesmo globo:
+- Pearson entre as duas estimativas:             0,9982
+- R2:                                            0,9963
+- Diferenca media:                               -0,074 °C
+- MAE:                                           0,196 °C
+- RMSE:                                          0,256 °C
+- Maior diferenca absoluta:                      1,581 °C
+- Limites de concordancia:                       -0,555 a 0,407 °C
+- IC95% por bootstrap em blocos de 24 h: consultar resultados/ibutg_stull/tabelas/intervalos_confianca_sensibilidade_ibutg_bootstrap_blocos.csv
+
+Propagacao aproximada das diferencas de T/UR na estimativa:
+- MAE temperatura usado: 0,29 °C
+- RMSE temperatura usado: 0,47 °C
+- MAE umidade usado: 2,52 p.p.
+- RMSE umidade usado: 3,47 p.p.
+- Incerteza aproximada por MAE em IBUTG: 0,421 °C
+- Incerteza aproximada por RMSE em IBUTG: 0,454 °C
+
+O que as estatisticas medem:
+- Vies: erro medio com sinal; positivo indica estimativa maior que o IBUTG ET.
+- MAE: erro medio absoluto em °C; indica o erro tipico sem considerar sinal.
+- RMSE: erro quadratico medio; penaliza mais erros grandes.
+- Pearson/R2: indicam se a estimativa acompanha a variacao temporal do IBUTG ET.
+- Propagacao: estima como diferencas de temperatura e umidade afetam o indice calculado; nao inclui erro do globo nem converte Stull em bulbo umido natural.
+
+Arquivos de saida:
+- resultados/ibutg_stull/tabelas/comparacao_ibutg_stull.csv
+- resultados/ibutg_stull/tabelas/intervalos_confianca_sensibilidade_ibutg_bootstrap_blocos.csv
+- resultados/ibutg_stull/resumos/resumo_ibutg_stull.txt
+- resultados/ibutg_stull/graficos/grafico_ibutg_stull_series.png
+- resultados/ibutg_stull/graficos/grafico_diferenca_ibutg_stull.png
+- resultados/ibutg_stull/graficos/grafico_incerteza_ibutg_stull.png

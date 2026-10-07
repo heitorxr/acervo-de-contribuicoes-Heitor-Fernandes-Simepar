@@ -1,0 +1,32 @@
+# -*- coding: utf-8 -*-
+"""Alterna montagem/explodida das revisões v04/v05 no FreeCAD."""
+import FreeCAD as App
+import FreeCADGui as Gui
+
+doc = App.ActiveDocument
+if not doc or not doc.getObject('Controle_Visualizacao'):
+    raise RuntimeError('Abra caixa_sonar_18650_v04.FCStd ou v05.FCStd antes de executar a macro.')
+control = doc.getObject('Controle_Visualizacao')
+lid = doc.getObject('Tampa_Caixa')
+sonar = doc.getObject('Sonar_Externo')
+parts = ('Bateria_18650_1','Bateria_18650_2','Placa_Eletronica_30x70','Borne_Placa')
+if control.Modo == 'Explodida':
+    lid.Placement.Base = App.Vector(0,0,40)
+    sonar.Placement.Base = App.Vector(0,0,0)
+    for name in parts: doc.getObject(name).Placement.Base=App.Vector(0,0,0)
+    control.Modo = 'Montagem fechada'
+else:
+    lid.Placement.Base = App.Vector(0,0,60)
+    sonar.Placement.Base = App.Vector(-25,0,0)
+    for name, offset in {
+        'Bateria_18650_1': App.Vector(0,-83,14),
+        'Bateria_18650_2': App.Vector(0,83,14),
+        'Placa_Eletronica_30x70': App.Vector(42,0,15),
+        'Borne_Placa': App.Vector(42,0,15),
+    }.items(): doc.getObject(name).Placement.Base=offset
+    control.Modo = 'Explodida'
+doc.recompute()
+Gui.activeDocument().activeView().viewAxonometric()
+Gui.activeDocument().activeView().fitAll()
+doc.save()
+print('Modo atual: '+control.Modo)

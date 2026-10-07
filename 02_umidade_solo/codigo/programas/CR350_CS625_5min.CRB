@@ -1,0 +1,64 @@
+' Datalogger Campbell Scientific CR350
+' Programa minimo para uma sonda CS625
+'
+' Ligacao usada neste programa:
+'   Vermelho          -> 12V (alimentacao)
+'   Laranja           -> 12V (habilitacao continua)
+'   Preto             -> G   (terra de sinal)
+'   Transparente/malha-> G   (terra de alimentacao/blindagem)
+'   Verde             -> 1H / SE1 (saida quadrada de 0 a 3,3 V)
+'
+' Funcionamento:
+'   - o Scan verifica o relogio a cada 10 segundos;
+'   - uma unica leitura e feita nos minutos 00, 05, 10, 15, ...;
+'   - cada leitura gera imediatamente um registro em TabelaSolo;
+'   - CS625_Period fica em microssegundos;
+'   - VWC fica em m3/m3 (por exemplo, 0,30 equivale a 30%).
+
+' Variaveis publicas
+Public CS625_Period As Float
+Public VWC As Float
+
+Units CS625_Period = uSec
+Units VWC = m3/m3
+
+' Como nao ha DataInterval, cada CallTable grava exatamente um registro.
+' O CallTable e executado somente uma vez a cada 5 minutos.
+DataTable(TabelaSolo, True, -1)
+  Sample(1, CS625_Period, IEEE4)
+  FieldNames("Periodo_CS625_us")
+  Sample(1, VWC, IEEE4)
+  FieldNames("VWC_m3_m3")
+EndTable
+
+BeginProg
+  ' Varredura curta para coincidir com os limites de 5 minutos do relogio.
+  Scan(10, Sec, 0, 0)
+
+    ' Executa nos horarios HH:00, HH:05, HH:10, HH:15, ...
+    If TimeIntoInterval(0, 5, Min) Then
+
+      ' CR350: PeriodAvg(Dest, Reps, Chan, Option, Cycles, Timeout, Mult, Offset)
+      ' Option 0 retorna periodo em microssegundos.
+      ' Sao promediados 100 ciclos, com timeout de 100 ms.
+      PeriodAvg(CS625_Period, 1, SE1, 0, 100, 100, 1, 0)
+
+      ' Calibracao padrao Campbell para solos minerais.
+      ' O periodo deve estar em microssegundos e VWC sai em m3/m3.
+      If CS625_Period > 13 AND CS625_Period < 45 Then
+        VWC = -0.0663 - 0.0063 * CS625_Period + 0.0007 * CS625_Period^2
+
+        ' Limites fisicos da fracao volumetrica.
+        If VWC < 0 Then VWC = 0
+        If VWC > 1 Then VWC = 1
+      Else
+        ' Sem onda valida, timeout ou periodo fora da faixa plausivel.
+        VWC = NAN
+      EndIf
+
+      ' Sem DataInterval, esta chamada cria uma linha imediatamente.
+      CallTable TabelaSolo
+    EndIf
+
+  NextScan
+EndProg

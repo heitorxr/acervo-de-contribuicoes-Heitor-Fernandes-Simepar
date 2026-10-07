@@ -1,0 +1,14 @@
+REGISTRO GRÁFICO DO SENSOR AMBIENTAL DO POSTE
+
+Arquivo de entrada: dados/entrada_serie_ambiental/Dados Sensor ET - Página1.csv
+Registros com data/hora válida: 20523
+Início: 21/07/2026 18:22:16
+Fim: 06/08/2026 17:02:56
+
+Escopo:
+- Figura exclusivamente descritiva das séries brutas.
+- Nenhuma validação, calibração ou comparação foi realizada.
+- Os dados não são válidos para verificação de desempenho porque o sensor
+  não estava sob sol direto e as condições de ventilação eram inadequadas.
+
+Gráfico: resultados/serie_ambiental_nao_validada/graficos/serie_temporal_sensor_ambiental_poste.png

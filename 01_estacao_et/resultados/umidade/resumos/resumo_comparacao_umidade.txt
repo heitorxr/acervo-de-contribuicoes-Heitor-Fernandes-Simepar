@@ -1,0 +1,27 @@
+
+Resumo estatistico: RU ET vs umidade Simepar
+============================================
+Pares validos analisados: 1601
+
+Estatisticas calculadas:
+- Pearson:          0,9725
+- R2:               0,9458
+- Diferenca media:  -0,81 p.p.  (RU ET - Simepar)
+- MAE:              2,52 p.p.
+- RMSE:             3,47 p.p.
+- Limites de concordancia: -7,42 a 5,81 p.p.
+- IC95% por bootstrap em blocos de 24 h: consultar resultados/umidade/tabelas/intervalos_confianca_umidade_bootstrap_blocos.csv
+
+O que cada estatistica mede:
+- Pearson: mede o quanto as duas series variam juntas de forma linear. Quanto mais perto de 1, mais parecidas sao as variacoes.
+- R2: e o quadrado de Pearson nesta comparacao; indica a fracao da variacao linear explicada pela outra serie.
+- Diferenca media: mostra o vies medio entre as series. Valor negativo indica RU ET menor que Simepar em media.
+- MAE: erro medio absoluto em pontos percentuais; mostra o tamanho medio da diferenca sem considerar o sinal.
+- RMSE: erro quadratico medio; penaliza mais os erros grandes que o MAE.
+
+Arquivos de saida:
+- resultados/umidade/tabelas/comparacao_umidade_RU_simepar.csv
+- resultados/umidade/tabelas/intervalos_confianca_umidade_bootstrap_blocos.csv
+- resultados/umidade/resumos/resumo_comparacao_umidade.txt
+- resultados/umidade/graficos/grafico_comparacao_umidade.png
+- resultados/umidade/graficos/grafico_diferenca_umidade.png

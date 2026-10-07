@@ -1,0 +1,13 @@
+COMPARAÇÃO EXCLUSIVA DO FIM DE SEMANA: CS625 × PC03/AZUL
+
+Período: 2026-09-19 00:00:00-0300 a 2026-09-20 23:55:00-0300
+Fontes: CS — TOA5/UmidSolo; PC03 — SIMEPAR/sensor 238.
+Pares exatos de 5 min: 576; treino: 403; validação: 173.
+
+PC03 original: Pearson 0.6959; Spearman 0.9102; viés -6.0561 p.p.; MAE 6.7488 p.p.; RMSE 6.9422 p.p.
+Validação temporal, quadrático treinado nos 70%: viés -0.8834 p.p.; MAE 0.8834 p.p.; RMSE 0.9299 p.p.
+Lag diagnóstico: -75 min; Pearson 0.7908; n 561.
+
+Ajustes no conjunto completo são descritivos e não constituem validação independente.
+Não houve interpolação nem suavização.
+Resultados no acervo: 02_umidade_solo/resultados/comparacao_cs625_pc03_fim_de_semana

@@ -1,0 +1,135 @@
+
+Resumo: ajuste empirico linear das leituras da estacao ET
+==========================================================
+Pares validos analisados: 1601
+Periodo pareado: 2026-06-18 16:00:00 a 2026-07-07 09:30:00
+Divisao temporal 70/30: 1120 pares no treino e 481 pares no teste
+Data limite aproximada entre treino e teste: 2026-07-01 20:30:00
+
+1) Ajuste linear global calculado com todos os pares
+----------------------------------------------------
+Temperatura: Tbs_aj = 0.019930 +0.984689*x
+Umidade:     RU_aj  = 21.449515 +0.760385*x
+Observacao: o ajuste por vies constante foi removido porque piorava ou melhorava muito pouco as metricas.
+
+Metricas no conjunto inteiro: bruto vs ajuste linear global vs ajuste linear treinado nos 70% iniciais
+------------------------------------------------------------------------------------------------
+               variavel                 metodo    n          vies       mae
+ temperatura_bulbo_seco                  bruto 1601  1.898189e-01 0.2923798
+ temperatura_bulbo_seco   ajuste_linear_global 1601  1.928480e-14 0.2810049
+ temperatura_bulbo_seco ajuste_linear_treino70 1601 -2.390543e-02 0.2873626
+       umidade_relativa                  bruto 1601 -8.065584e-01 2.5231106
+       umidade_relativa   ajuste_linear_global 1601  3.780951e-14 1.2789128
+       umidade_relativa ajuste_linear_treino70 1601  1.025685e-01 1.3014608
+                  IBUTG                  bruto 1601  7.651639e-02 0.1953151
+                  IBUTG   ajuste_linear_global 1601  3.092039e-03 0.1443119
+                  IBUTG ajuste_linear_treino70 1601 -7.096407e-03 0.1490103
+      rmse   max_abs   pearson        r2
+ 0.4749108  2.900000 0.9948138 0.9896545
+ 0.4303777  2.655042 0.9948138 0.9896545
+ 0.4315263  2.613901 0.9948138 0.9896545
+ 3.4691565 17.700000 0.9725219 0.9457989
+ 2.0410464 14.437235 0.9725219 0.9457989
+ 2.0469175 14.228525 0.9725219 0.9457989
+ 0.2553978  1.539278 0.9981907 0.9963847
+ 0.2142668  1.458853 0.9986155 0.9972329
+ 0.2158212  1.470422 0.9985739 0.9971498
+
+2) Validacao temporal 70/30
+---------------------------
+Coeficientes treinados apenas nos primeiros 70% dos dados:
+Temperatura: Tbs_aj = 0.061588 +0.979902*x
+Umidade:     RU_aj  = 22.444139 +0.750031*x
+
+Metricas separadas em treino e teste usando esses coeficientes:
+               variavel  conjunto                 metodo    n          vies
+ temperatura_bulbo_seco treino_70                  bruto 1120  2.012500e-01
+ temperatura_bulbo_seco treino_70 ajuste_linear_treino70 1120  1.024603e-14
+ temperatura_bulbo_seco  teste_30                  bruto  481  1.632017e-01
+ temperatura_bulbo_seco  teste_30 ajuste_linear_treino70  481 -7.956879e-02
+       umidade_relativa treino_70                  bruto 1120 -9.510714e-01
+       umidade_relativa treino_70 ajuste_linear_treino70 1120 -7.893247e-14
+       umidade_relativa  teste_30                  bruto  481 -4.700624e-01
+       umidade_relativa  teste_30 ajuste_linear_treino70  481  3.413975e-01
+                  IBUTG treino_70                  bruto 1120  7.513318e-02
+                  IBUTG treino_70 ajuste_linear_treino70 1120  2.892276e-03
+                  IBUTG  teste_30                  bruto  481  7.973717e-02
+                  IBUTG  teste_30 ajuste_linear_treino70  481 -3.035488e-02
+       mae      rmse    max_abs   pearson        r2
+ 0.3058929 0.4994461  2.9000000 0.9948673 0.9897609
+ 0.2964064 0.4480857  2.6139008 0.9948673 0.9897609
+ 0.2609148 0.4121593  2.3000000 0.9933757 0.9867953
+ 0.2663043 0.3902548  2.0319886 0.9933757 0.9867953
+ 2.7539286 3.7036131 17.7000000 0.9712685 0.9433625
+ 1.3176413 2.1202343 14.2285246 0.9712685 0.9433625
+ 1.9856549 2.8494264 14.7000000 0.9773673 0.9552468
+ 1.2637849 1.8650650 12.2783954 0.9773673 0.9552468
+ 0.1947701 0.2610566  1.5392775 0.9982694 0.9965418
+ 0.1588257 0.2294465  1.4704215 0.9985767 0.9971555
+ 0.1965842 0.2417086  1.0012845 0.9977947 0.9955943
+ 0.1261554 0.1801447  0.9277789 0.9981446 0.9962926
+
+Leitura rapida do teste 30%:
+- temperatura_bulbo_seco: MAE bruto=0,261, MAE ajustado=0,266; RMSE bruto=0,412, RMSE ajustado=0,390
+- umidade_relativa: MAE bruto=1,986, MAE ajustado=1,264; RMSE bruto=2,849, RMSE ajustado=1,865
+- IBUTG: MAE bruto=0,197, MAE ajustado=0,126; RMSE bruto=0,242, RMSE ajustado=0,180
+
+3) Estabilidade dos coeficientes por janelas de 3 dias
+------------------------------------------------------
+Resumo das janelas calculadas:
+ janela_id     inicio                 fim               variavel   n
+         1 2026-06-18 2026-06-20 23:59:59 temperatura_bulbo_seco 214
+         1 2026-06-18 2026-06-20 23:59:59       umidade_relativa 214
+         2 2026-06-21 2026-06-23 23:59:59 temperatura_bulbo_seco 258
+         2 2026-06-21 2026-06-23 23:59:59       umidade_relativa 258
+         3 2026-06-24 2026-06-26 23:59:59 temperatura_bulbo_seco 245
+         3 2026-06-24 2026-06-26 23:59:59       umidade_relativa 245
+         4 2026-06-27 2026-06-29 23:59:59 temperatura_bulbo_seco 257
+         4 2026-06-27 2026-06-29 23:59:59       umidade_relativa 257
+         5 2026-06-30 2026-07-02 23:59:59 temperatura_bulbo_seco 240
+         5 2026-06-30 2026-07-02 23:59:59       umidade_relativa 240
+         6 2026-07-03 2026-07-05 23:59:59 temperatura_bulbo_seco 286
+         6 2026-07-03 2026-07-05 23:59:59       umidade_relativa 286
+         7 2026-07-06 2026-07-08 23:59:59 temperatura_bulbo_seco 101
+         7 2026-07-06 2026-07-08 23:59:59       umidade_relativa 101
+ intercepto_linear inclinacao_linear mae_ajuste_linear rmse_ajuste_linear
+        0.23399862         0.9710901         0.1800277          0.2903481
+       19.96005656         0.7760592         0.7296613          1.0243802
+        0.31023648         0.9574611         0.2840242          0.4222837
+       23.34671174         0.7419286         1.1607433          2.1615748
+        0.03501054         0.9728629         0.3308578          0.4494780
+       30.23976315         0.6647487         1.5410693          2.2832165
+        0.56521434         0.9461042         0.3629265          0.5779259
+       25.96098367         0.7114262         1.6021502          2.5626571
+        0.18636155         0.9834123         0.2944577          0.3743753
+       16.24484551         0.8140737         1.0058009          1.3905040
+        0.27118812         0.9655844         0.2123977          0.3362100
+       27.49533294         0.6941100         0.9403964          1.4720300
+       -0.10229313         0.9955834         0.2216948          0.3853635
+       20.09109406         0.7739874         1.2173463          2.1241998
+
+Amplitude dos coeficientes entre janelas:
+- temperatura_bulbo_seco: intercepto min=-0,1023, max=0,5652; inclinacao min=0,9461, max=0,9956
+- umidade_relativa: intercepto min=16,2448, max=30,2398; inclinacao min=0,6647, max=0,8141
+
+4) Interpretacao metodologica
+-----------------------------
+- O ajuste linear global mostra o melhor encaixe possivel para o conjunto atual, mas usa os mesmos dados para ajustar e avaliar.
+- A validacao 70/30 testa se os coeficientes calculados nos primeiros 70% continuam ajudando nos 30% finais.
+- As janelas de 3 dias mostram se intercepto e inclinacao sao estaveis ou se mudam conforme o periodo analisado.
+- Os coeficientes sao especificos desta campanha e devem ser recalculados para outro conjunto ou periodo.
+- Estes resultados devem ser tratados como ajuste empirico de pos-processamento, nao como calibracao laboratorial rastreavel.
+
+Arquivos de saida:
+- resultados/calibracao_empirica/tabelas/dados_calibracao_empirica_pareados.csv
+- resultados/calibracao_empirica/tabelas/coeficientes_calibracao_empirica.csv
+- resultados/calibracao_empirica/tabelas/metricas_calibracao_empirica.csv
+- resultados/calibracao_empirica/tabelas/validacao_temporal_70_30.csv
+- resultados/calibracao_empirica/tabelas/coeficientes_janelas_3dias.csv
+- resultados/calibracao_empirica/resumos/resumo_calibracao_empirica.txt
+- resultados/calibracao_empirica/graficos/grafico_calibracao_temperatura.png
+- resultados/calibracao_empirica/graficos/grafico_calibracao_umidade.png
+- resultados/calibracao_empirica/graficos/grafico_calibracao_ibutg.png
+- resultados/calibracao_empirica/graficos/grafico_dispersao_calibracao_temperatura.png
+- resultados/calibracao_empirica/graficos/grafico_dispersao_calibracao_umidade.png
+- resultados/calibracao_empirica/graficos/grafico_coeficientes_janelas_3dias.png

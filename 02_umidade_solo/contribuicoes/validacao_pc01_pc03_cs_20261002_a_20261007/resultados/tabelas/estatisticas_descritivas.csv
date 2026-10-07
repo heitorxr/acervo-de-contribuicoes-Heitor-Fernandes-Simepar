@@ -1,0 +1,4 @@
+"sensor","n","minimo_pct","q05_pct","mediana_pct","media_pct","q95_pct","maximo_pct","desvio_padrao_pct","amplitude_pp"
+"CS — UmidSolo",1499,28.35,28.56,30.55,31.02122748499,35.081,35.93,1.91174714082669,7.58
+"plugfild — UmidPlug",1499,42,42,45,45.5977318212141,49,50,2.065747146634,8
+"PC03/azul — UmidAzul",1499,23,24,24,24.8772515010007,29,31,1.6538610963916,8

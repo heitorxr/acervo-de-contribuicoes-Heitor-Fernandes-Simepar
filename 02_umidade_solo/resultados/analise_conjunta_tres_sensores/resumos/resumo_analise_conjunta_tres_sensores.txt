@@ -1,0 +1,27 @@
+Análise conjunta: CS — UmidSolo, plugfild e PC03/azul
+===================================================
+
+Direção: CS — UmidSolo é a referência de campo; plugfild e PC03/azul são avaliados e ajustados.
+Fonte: TOA5 TableEnvio; UmidSolo (CS), PeriodoCS625, UmidPlug e UmidAzul.
+Corte aplicado: 2026-09-04 11:15:00-0300 — primeiro UmidPlug válido após lacuna contínua de 1125 min.
+Período: 2026-09-04 11:15:00-0300 a 2026-09-15 14:32:00-0300
+Pares exatos dos três sensores: 15206
+Treino 70%: 10644; validação 30%: 4562; início da validação: 2026-09-12 10:31:00-0300
+
+Dados brutos contra CS — UmidSolo:
+- plugfild: Pearson=0.9453; Spearman=0.9537; bias=-8.7807 p.p.; MAE=8.7807 p.p.; RMSE=8.8335 p.p.
+- PC03/azul: Pearson=0.7639; Spearman=0.8947; bias=-0.6415 p.p.; MAE=3.7576 p.p.; RMSE=5.2483 p.p.
+
+Validação temporal nos 30% finais — ajuste quadrático treinado nos 70% iniciais:
+- plugfild: bias=-0.8577 p.p.; MAE=0.8577 p.p.; RMSE=0.8838 p.p.
+- PC03/azul: bias=0.5892 p.p.; MAE=0.7174 p.p.; RMSE=1.0781 p.p.
+
+Lag diagnóstico:
+- plugfild: 0 min; Pearson=0.9453; n=15208
+- PC03/azul: -10 min; Pearson=0.7717; n=15186
+
+Observações:
+- Não houve interpolação nem suavização.
+- Os gráficos conjuntos foram usados quando unidade, escala e objetivo permitiram comparação direta.
+- Ajustes e resíduos com faixas distintas foram separados em painéis.
+- Coeficientes são empíricos para este período curto e não devem ser extrapolados.

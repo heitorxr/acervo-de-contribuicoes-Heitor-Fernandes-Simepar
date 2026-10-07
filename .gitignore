@@ -1,0 +1,21 @@
+# Artefatos locais / temporários
+.Rhistory
+.RData
+.Rproj.user/
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
+
+# Entradas privadas e saídas individuais de umidade do solo
+/02_umidade_solo/**/dados/**/*.csv
+/02_umidade_solo/**/dados/**/*.dat
+/02_umidade_solo/**/dados/**/*.json
+/02_umidade_solo/**/dados/**/*.xlsx
+/02_umidade_solo/**/tabelas/dados_*alinhados.csv
+/02_umidade_solo/**/tabelas/predicoes_e_residuos.csv
+/02_umidade_solo/**/tabelas/leituras_brutas*.csv
+/02_umidade_solo/**/tabelas/medias_predicoes_residuos*.csv
+/02_umidade_solo/**/tabelas/pontos_vwc_referencia.csv
+/02_umidade_solo/**/graficos/0[1-5]_*.png
+/02_umidade_solo/resultados/calibracao_laboratorial_cs625/graficos/*.png

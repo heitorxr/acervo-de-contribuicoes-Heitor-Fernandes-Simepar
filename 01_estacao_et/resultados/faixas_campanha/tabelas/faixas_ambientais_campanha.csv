@@ -1,0 +1,7 @@
+"variavel";"unidade";"n";"minimo";"q05";"mediana";"q95";"maximo"
+"temperatura_ar_ET";"celsius";1601;2,3;6,5;13,2;21;25,6
+"umidade_relativa_ET";"percentual";1601;48,3;62,2;88,7;98,2;98,7
+"temperatura_globo_ET";"celsius";1601;0,6;5,5;13;28,7;35
+"aquecimento_relativo_globo";"celsius";1601;-3,6;-2,2;-0,6;8,6;15,8
+"indice_termico_estimado";"celsius";1601;1,7;5,5;12,6;18,9;22,8
+"radiacao_solar_simepar";"unidade_do_arquivo_fonte";1601;0;0;0;381,4;582,7

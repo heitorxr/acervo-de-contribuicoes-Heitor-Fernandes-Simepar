@@ -1,0 +1,124 @@
+
+Resumo: disponibilidade temporal do registro ponta a ponta
+=========================================================
+Arquivo analisado: dados/entrada/Dados Sensor ET - Página1.csv
+Primeiro slot analisado: 2026-06-18 16:00:00
+Ultimo slot analisado:   2026-07-07 09:30:00
+Intervalo nominal:       15 min
+Linhas recebidas no CSV: 1608
+
+1) Cobertura global
+-------------------
+Slots esperados:       1799
+Slots com leitura:     1601
+Slots sem registro:    198
+Disponibilidade final: 88,99 %
+Ausencia no registro:  11,01 %
+Slots com duplicidade: 7
+Leituras extras em slots ja cobertos: 7
+
+2) Status dos registros recebidos
+----------------------------------
+ status_recepcao    n percentual_linhas
+              1F 1539         95.708955
+     1F_SUSPEITO   69          4.291045
+
+3) Hora do dia com mais perdas
+------------------------------
+Considerando todos os dias:
+- Maior numero absoluto de slots perdidos: hora 14h, perdidos=22, perda=30,56 %
+- Maior percentual de perda: hora 14h, perdidos=22, perda=30,56 %
+
+Considerando apenas dias uteis:
+- Maior numero absoluto de slots perdidos: hora 11h, perdidos=20, perda=41,67 %
+- Maior percentual de perda: hora 11h, perdidos=20, perda=41,67 %
+
+4) Teste exploratorio da hipotese de trafego/circulacao na UFPR
+----------------------------------------------------------------
+Janelas tratadas como hipotese em dias uteis:
+             janela inicio_hora fim_hora
+        manha_uteis           6       12
+ comeco_tarde_uteis          12       14
+   meio_tarde_uteis          14       17
+
+Cobertura por janelas horarias em dias uteis:
+     janela_horaria esperado recebido perdido perda_pct cobertura_pct
+          madrugada      312      293      19  6.089744      93.91026
+        manha_uteis      303      248      55 18.151815      81.84818
+ comeco_tarde_uteis       96       74      22 22.916667      77.08333
+   meio_tarde_uteis      148       94      54 36.486486      63.51351
+          fim_tarde      104       95       9  8.653846      91.34615
+              noite      260      253       7  2.692308      97.30769
+ hipotese_trafego_ufpr
+                 FALSE
+                  TRUE
+                  TRUE
+                  TRUE
+                 FALSE
+                 FALSE
+
+Comparacao agregada: janelas da hipotese em dias uteis vs demais horarios:
+                       grupo esperado recebido perdido perda_pct cobertura_pct
+             demais_horarios     1252     1185      67  5.351438      94.64856
+ janelas_hipotese_dias_uteis      547      416     131 23.948812      76.05119
+
+Janela de dias uteis com mais perdas absolutas: manha_uteis (55 slots perdidos; 18,15 %)
+Janela de dias uteis com maior percentual de perda: meio_tarde_uteis (54 slots perdidos; 36,49 %)
+
+Interpretacao cautelosa:
+- O resultado mede disponibilidade no CSV final, nao taxa de sucesso exclusiva do enlace LoRa.
+- A distribuicao horaria e exploratoria e nao prova causalidade nem interferencia por circulacao no campus.
+- Sem logs locais em cada no e sem RSSI/SNR por pacote, nao e possivel separar falhas de sensor, alimentacao, LoRa, repetidor, receptor, Wi-Fi, HTTP ou planilha.
+- A hipotese de influencia da atividade no campus exige repeticao, telemetria de radio e experimento controlado.
+
+5) Maiores lacunas temporais
+----------------------------
+ inicio_ultima_leitura fim_proxima_leitura duracao_min slots_ausentes
+   2026-06-24 14:15:00 2026-06-24 17:45:00         210             13
+   2026-07-02 09:30:00 2026-07-02 12:00:00         150              9
+   2026-07-06 09:30:00 2026-07-06 12:00:00         150              9
+   2026-06-28 22:30:00 2026-06-29 00:45:00         135              8
+   2026-07-01 15:00:00 2026-07-01 17:15:00         135              8
+   2026-07-07 00:00:00 2026-07-07 02:00:00         120              7
+   2026-06-24 08:45:00 2026-06-24 10:30:00         105              6
+   2026-06-24 10:30:00 2026-06-24 12:00:00          90              5
+   2026-07-01 13:30:00 2026-07-01 15:00:00          90              5
+   2026-06-22 16:00:00 2026-06-22 17:15:00          75              4
+   2026-06-28 13:30:00 2026-06-28 14:45:00          75              4
+   2026-07-06 12:45:00 2026-07-06 14:00:00          75              4
+   2026-07-06 16:00:00 2026-07-06 17:15:00          75              4
+   2026-06-22 12:45:00 2026-06-22 13:45:00          60              3
+   2026-06-22 14:00:00 2026-06-22 15:00:00          60              3
+ dia_util_inicio
+            TRUE
+            TRUE
+            TRUE
+           FALSE
+            TRUE
+            TRUE
+            TRUE
+            TRUE
+            TRUE
+            TRUE
+           FALSE
+            TRUE
+            TRUE
+            TRUE
+            TRUE
+
+6) Arquivos de saida
+--------------------
+- resultados/transmissao_lora/tabelas/slots_transmissao_lora.csv
+- resultados/transmissao_lora/tabelas/resumo_global_transmissao_lora.csv
+- resultados/transmissao_lora/tabelas/cobertura_diaria_lora.csv
+- resultados/transmissao_lora/tabelas/cobertura_horaria_lora.csv
+- resultados/transmissao_lora/tabelas/cobertura_janelas_horarias_lora.csv
+- resultados/transmissao_lora/tabelas/lacunas_temporais_lora.csv
+- resultados/transmissao_lora/tabelas/status_recepcao_lora.csv
+- resultados/transmissao_lora/resumos/resumo_transmissao_lora.txt
+- resultados/transmissao_lora/graficos/grafico_perda_diaria_lora.png
+- resultados/transmissao_lora/graficos/grafico_perda_por_hora_lora.png
+- resultados/transmissao_lora/graficos/grafico_perda_janelas_horarias_lora.png
+- resultados/transmissao_lora/graficos/grafico_lacunas_lora.png
+- resultados/transmissao_lora/graficos/grafico_heatmap_perda_hora_dia_lora.png
+- resultados/transmissao_lora/graficos/grafico_status_recepcao_lora.png

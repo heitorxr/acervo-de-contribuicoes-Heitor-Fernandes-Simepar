@@ -1,0 +1,30 @@
+
+Resumo estatistico: Bulbo Seco ET vs temperatura Simepar
+========================================================
+Pares validos analisados: 1601
+
+Estatisticas calculadas:
+- Pearson:                 0,9948
+- R2:                      0,9897
+- Diferenca media:         0,19 °C  (Bulbo Seco ET - Simepar)
+- MAE:                     0,29 °C
+- RMSE:                    0,47 °C
+- Desvio padrao diferenca: 0,44 °C
+- Limites de concordancia:  -0,66 a 1,04 °C
+- IC95% por bootstrap em blocos de 24 h: consultar resultados/temperatura/tabelas/intervalos_confianca_temperatura_bootstrap_blocos.csv
+
+O que cada estatistica mede:
+- Pearson: mede o quanto as duas series de temperatura variam juntas de forma linear.
+- R2: e o quadrado de Pearson nesta comparacao; indica a fracao da variacao linear explicada pela outra serie.
+- Diferenca media: mostra o vies medio. Valor positivo indica Bulbo Seco ET maior que Simepar em media.
+- MAE: erro medio absoluto em °C; mostra o tamanho medio da diferenca sem considerar o sinal.
+- RMSE: erro quadratico medio em °C; penaliza mais diferencas grandes que o MAE.
+- Desvio padrao da diferenca: mostra a variabilidade das diferencas ao redor do vies medio.
+
+Arquivos de saida:
+- resultados/temperatura/tabelas/comparacao_temperatura_bulbo_seco_simepar.csv
+- resultados/temperatura/tabelas/intervalos_confianca_temperatura_bootstrap_blocos.csv
+- resultados/temperatura/resumos/resumo_comparacao_temperatura.txt
+- resultados/temperatura/graficos/grafico_comparacao_temperatura.png
+- resultados/temperatura/graficos/grafico_diferenca_temperatura.png
+- resultados/temperatura/graficos/grafico_dispersao_temperatura.png
