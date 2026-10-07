@@ -2,7 +2,7 @@
 
 Cada subpasta identifica uma campanha ou análise histórica. Este diretório contém tabelas agregadas, resumos e, quando disponíveis, gráficos de métricas, disponibilidade ou correlação por lag.
 
-Não contém séries por timestamp, predições/resíduos por observação, leituras brutas de laboratório ou imagens que exponham essas observações. Esses materiais permanecem no ambiente privado.
+As campanhas históricas permanecem separadas das contribuições posteriores. As novas contribuições publicam resultados agregados, sem entradas ou saídas individuais.
 
 - `analise_conjunta_tres_sensores/`: comparação histórica dos três sensores a partir de um TOA5 único.
 - `comparacao_cs625_pc03_fim_de_semana/`: comparação exclusiva do fim de semana de 19–20/09/2026, com CS do TOA5 e PC03 SIMEPAR.

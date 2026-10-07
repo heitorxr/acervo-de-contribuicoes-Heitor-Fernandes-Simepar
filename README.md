@@ -3,7 +3,7 @@
 Código, documentação, resultados de análise e modelos 3D, organizados por área:
 
 1. `01_estacao_et` — intercomparação da estação de verificação ambiental com dados SIMEPAR.
-2. `02_umidade_solo` — análises do CR350/CS625 e dos sensores PC01/plugfild e PC03/azul. As entradas confidenciais, tabelas com observações individuais e imagens dessas séries não integram este acervo público.
+2. `02_umidade_solo` — análises do CR350/CS625 e dos sensores PC01/plugfild e PC03/azul. As contribuições recentes publicam resultados agregados, sem entradas confidenciais nem imagens de séries individuais.
 3. `03_modelos_3d` — projetos de impressão 3D, com revisões e componentes identificados.
 
 ## Navegação e reexecução
@@ -12,7 +12,7 @@ Código, documentação, resultados de análise e modelos 3D, organizados por á
 - Na área de umidade, o acervo publica código, documentação e resultados agregados. As entradas devem ser fornecidas localmente, fora do repositório.
 - A contribuição de outubro está em [`02_umidade_solo/contribuicoes/validacao_pc01_pc03_cs_20261002_a_20261007`](02_umidade_solo/contribuicoes/validacao_pc01_pc03_cs_20261002_a_20261007).
 - Os documentos em `documentacao_origem/` descrevem o ambiente privado de análise; seus exemplos de arquivos não indicam que as entradas estejam disponíveis aqui.
-- `ESTRUTURA.txt` lista os arquivos da versão pública, sem os metadados internos de Git.
+- `ESTRUTURA.txt` serve como mapa de navegação da versão pública, sem os metadados internos de Git; não é um inventário exaustivo.
 
 ## Proveniência dos materiais de origem
 

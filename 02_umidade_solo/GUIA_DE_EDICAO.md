@@ -5,7 +5,7 @@
 - `codigo/analises_raiz/`, `codigo/programas/` e `codigo/scripts/`: análises e automações históricas. Caminhos de entrada e datas pertencem às campanhas de origem; examine-os antes de executar.
 - `contribuicoes/`: análises posteriores, com documentação própria. A contribuição de outubro compara CS/CR350, PC01 e PC03, de 02 a 07/10/2026.
 - `dados/`: somente documentação; não há TOA5, downloads SIMEPAR nem leituras de laboratório disponíveis aqui.
-- `resultados/<analise>/`: estatísticas, métricas, modelos e diagnósticos agregados. Tabelas com leituras individuais e imagens dessas séries foram excluídas da versão pública.
+- `resultados/<analise>/`: materiais das campanhas históricas, preservados separadamente das contribuições recentes.
 - `documentacao_origem/`: documentos do ambiente privado. Seus exemplos de arquivos de entrada são referências de procedimento, não arquivos distribuídos no acervo.
 
 ## Reexecução e privacidade

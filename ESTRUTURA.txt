@@ -1,4 +1,4 @@
-Arquivos do acervo público
+Mapa de navegação do acervo público (não exaustivo)
 
 .gitattributes
 .gitignore
